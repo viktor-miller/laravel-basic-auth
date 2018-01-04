@@ -1,0 +1,29 @@
+{
+    "name": "viktor-miller/laravel-basic-auth",
+    "description": "laravel basic authentication package",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Viktor Miller",
+            "email": "phpfriq@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.4.*|5.5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ViktorMiller\\LaravelBasicAuth\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ViktorMiller\\LaravelBasicAuth\\ServiceProvider"
+            ]
+        }
+    }
+}
