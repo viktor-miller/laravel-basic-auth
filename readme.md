@@ -24,9 +24,7 @@ Add package to your **composer.json** file:
 For Laravel <= 5.4 add service provider to **config/app.php**
 
     'providers' => [
-   	    ...
       	ViktorMiller\LaravelBasicAuth\ServiceProvider::class,
-      	...
     ]
 
 Call artisan command to publish config file
@@ -43,12 +41,10 @@ Change the configuration file **basic-auth.php** as you like
                 env('BASIC_AUTH_USER', 'admin'),
                 env('BASIC_AUTH_PASSWORD', 'preview')
     		],
-    		...
     		[
                 env('BASIC_AUTH_USER', 'admin2'),
                 env('BASIC_AUTH_PASSWORD', 'secret')
     		],
-    		...
         ]
 	];
 
