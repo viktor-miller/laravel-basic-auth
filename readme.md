@@ -7,7 +7,10 @@ The package put the application into basic authentication mode
 ### Features ###
 - artisan commands to turn on/off
 - configuration file
-- forced logout supported
+- support logout force
+- multilanguage support
+- temporary credentials support
+- expire date support
 
 ### Installation ###
 
