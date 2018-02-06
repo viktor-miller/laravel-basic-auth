@@ -37,7 +37,7 @@ Change the configuration file **basic-auth.php** as you like
 
 	return [
         'identities' => [
-    		[
+            [
                 env('BASIC_AUTH_USER', 'admin'),
                 env('BASIC_AUTH_PASSWORD', 'preview')
     		],
