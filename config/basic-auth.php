@@ -16,11 +16,11 @@ return [
     | eingegebene Daten und vergleicht diese mit Daten, die unten aufgelistet
     | sind.
     */
-    'identities' => collect([
+    'identities' => [
         [
             env('BASIC_AUTH_USER', 'admin'), 
             env('BASIC_AUTH_PASSWORD', 'preview')
         ]
-    ])
+    ]
     
 ];

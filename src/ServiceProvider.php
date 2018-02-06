@@ -3,7 +3,6 @@
 namespace ViktorMiller\LaravelBasicAuth;
 
 use Illuminate\Routing\Router;
-use Illuminate\Contracts\Http\Kernel;
 use ViktorMiller\LaravelBasicAuth\Console\Commands;
 use ViktorMiller\LaravelBasicAuth\Http\Middleware\BasicAuth;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -16,15 +15,36 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 class ServiceProvider extends BaseServiceProvider
 {
     /**
+     * Package root path
+     * 
+     * @var string 
+     */
+    protected $packageRoot;
+    
+    /**
+     * Create a new service provider instance.
+     *
+     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @return void
+     */
+    public function __construct($app)
+    {
+        parent::__construct($app);
+        
+        $this->root = __DIR__ .'/../';
+    }
+    
+    /**
      * Bootstrap any application services.
      *
-     * @param  Kernel $kernel
+     * @param  Router $router
      * @return void
      */
     public function boot(Router $router)
     {
-        $this->initConsoleCommands();
         $this->defineConfigPublish();
+        $this->initTranslationPublish();
+        $this->initConsoleCommands();
         
         $router->pushMiddlewareToGroup('web', BasicAuth::class);
     }
@@ -48,8 +68,8 @@ class ServiceProvider extends BaseServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Commands\BasicAuthOn::class,
-                Commands\BasicAuthOff::class,
+                Commands\On::class,
+                Commands\Off::class,
             ]);
         }
     }
@@ -76,5 +96,20 @@ class ServiceProvider extends BaseServiceProvider
         $this->mergeConfigFrom(
             __DIR__ .'/../config/basic-auth.php', 'basic-auth'
         );
+    }
+    
+    /**
+     * Init translation publish
+     * 
+     * @return void
+     */
+    protected function initTranslationPublish()
+    {
+        $path = $this->root .'resources/lang';
+
+        $this->loadTranslationsFrom($path, 'basic-auth');
+        $this->publishes([
+            $path => resource_path('lang/vendor/basic-auth'),
+        ], 'basic-auth:translations');
     }
 }

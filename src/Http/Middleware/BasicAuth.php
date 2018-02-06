@@ -3,6 +3,7 @@
 namespace ViktorMiller\LaravelBasicAuth\Http\Middleware;
 
 use Closure;
+use ViktorMiller\LaravelBasicAuth\Services\BasicAuth as BasicAuthService;
 
 /**
  * 
@@ -12,18 +13,19 @@ use Closure;
 class BasicAuth
 {
     /**
-     * @var string
+     * @var BasicAuthService
      */
-    protected $file;
+    protected $service;
     
     /**
      * Creare new middleware instance
      * 
+     * @param BasicAuthService $service
      * @retun void
      */
-    public function __construct()
+    public function __construct(BasicAuthService $service)
     {
-        $this->file = storage_path() .'/framework/basic-auth';
+        $this->service = $service;
     }
     
     /**
@@ -36,60 +38,15 @@ class BasicAuth
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function handle($request, Closure $next)
-    {
-        if (! $this->isOn()) {
-            return $next($request);
-        }
+    {   
+        $credentials = [$request->getUser(), $request->getPassword()];
         
-        $json = $this->json();
-        $session = $request->session()->get('_basic-auth');
-        
-        if ($session && $session !== $json->key) {
-            $request->session()->remove('_basic-auth');
-            
-            return $this->response();
-        }
-        
-        $data = [$request->getUser(), $request->getPassword()];
-        
-        if (! config('basic-auth.identities')->contains($data)) {
-            return $this->response();
-        }
-        
-        if (! $session) {
-            $request->session()->put('_basic-auth', $json->key);
+        if (! $this->service->passes($credentials)) {
+            return response('Unauthorized', 401, [
+                'WWW-Authenticate' => 'Basic'
+            ]);
         }
 
         return $next($request);
-    }
-    
-    /**
-     * send response
-     * 
-     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Contracts\Routing\ResponseFactory
-     */
-    protected function response()
-    {
-        return response('Unauthorized', 401, [
-            'WWW-Authenticate' => 'Basic'
-        ]);
-    }
-    
-    /**
-     * 
-     * @return bool
-     */
-    protected function isOn()
-    {
-        return file_exists($this->file);
-    }
-    
-    /**
-     * 
-     * @return \StdClass
-     */
-    protected function json()
-    {
-        return json_decode(file_get_contents($this->file));
     }
 }
