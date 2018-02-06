@@ -40,13 +40,13 @@ Change the configuration file **basic-auth.php** as you like
             [
                 env('BASIC_AUTH_USER', 'admin'),
                 env('BASIC_AUTH_PASSWORD', 'preview')
-    		],
-    		[
+            ],
+            [
                 env('BASIC_AUTH_USER', 'admin2'),
                 env('BASIC_AUTH_PASSWORD', 'secret')
-    		],
+            ],
         ]
-	];
+    ];
 
 Note: in the configuration files, use the passwords as they are, when you turn on the HTTP Basic Authenticationmode, the passwords will be written to the temporary file in **storage/framework/basicauth**. The passwords will be hashed.
 
