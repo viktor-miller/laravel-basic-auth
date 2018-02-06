@@ -24,7 +24,7 @@ Add package to your **composer.json** file:
 For Laravel <= 5.4 add service provider to **config/app.php**
 
     'providers' => [
-      	ViktorMiller\LaravelBasicAuth\ServiceProvider::class,
+        ViktorMiller\LaravelBasicAuth\ServiceProvider::class,
     ]
 
 Call artisan command to publish config file
