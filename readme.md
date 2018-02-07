@@ -1,6 +1,6 @@
 ## Laravel HTTP Basic Authentication (BA) ##
 
-This package activates the HTTP Basic Authentication mode in the application on Laravel> = 5.4
+This package activates the HTTP Basic Authentication mode in the application on Laravel >= 5.4
 
 After you call the command to activate the HTTP Basic Authentication mode, you will be asked to use the default authentication data from the configuration file. These data are permanent. Then you will be asked to use the temporary login data, which will be active only for the current mode. If you enter temporary data, it will be added to the data stack to the existing default login data from the config file (if you selected it). This allows you to have several keys to log in (for example permanent key for the admin and temporary for the customer).
 If you do not use the authentication data from the configuration file, you will be forced to enter the temporary login data every time.
