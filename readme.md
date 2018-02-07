@@ -42,8 +42,8 @@ Change the configuration file **basic-auth.php** as you like
                 env('BASIC_AUTH_PASSWORD', 'preview')
             ],
             [
-                env('BASIC_AUTH_USER', 'admin2'),
-                env('BASIC_AUTH_PASSWORD', 'secret')
+                'admin2',
+                'secret'
             ],
         ]
     ];
