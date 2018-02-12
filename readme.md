@@ -37,18 +37,18 @@ Change the configuration file **basic-auth.php** as you like
 ```php
 <?php
 
-    return [
-        'identities' => [
-            [
-                env('BASIC_AUTH_USER', 'admin'),
-                env('BASIC_AUTH_PASSWORD', 'preview')
-            ],
-            [
-                'admin2',
-                'secret'
-            ],
-        ]
-    ];
+return [
+    'identities' => [
+        [
+            env('BASIC_AUTH_USER', 'admin'),
+            env('BASIC_AUTH_PASSWORD', 'preview')
+        ],
+        [
+            'admin2',
+            'secret'
+        ],
+    ]
+];
 ```
 
 Note: in the configuration files, use the passwords as they are, when you turn on the HTTP Basic Authenticationmode, the passwords will be written to the temporary file in **storage/framework/basicauth**. The passwords will be hashed.
