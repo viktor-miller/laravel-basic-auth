@@ -21,6 +21,6 @@ return [
             env('BASIC_AUTH_USER', 'admin'), 
             env('BASIC_AUTH_PASSWORD', 'preview')
         ]
-    ]
+    ],
     
 ];

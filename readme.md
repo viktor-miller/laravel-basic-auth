@@ -23,30 +23,33 @@ Add package to your **composer.json** file:
 
 For Laravel <= 5.4 add service provider to **config/app.php**
 
-    'providers' => [
-      	ViktorMiller\LaravelBasicAuth\ServiceProvider::class,
-    ]
+````php
+'providers' => [
+    ViktorMiller\LaravelBasicAuth\ServiceProvider::class,
+]
+```
 
 Call artisan command to publish config file
 
     php artisan vendor:publish --tag=basic-auth:config
 
 Change the configuration file **basic-auth.php** as you like
+```php
+<?php
 
-    <?php
-
-	return [
+    return [
         'identities' => [
-    		[
+            [
                 env('BASIC_AUTH_USER', 'admin'),
                 env('BASIC_AUTH_PASSWORD', 'preview')
-    		],
-    		[
-                env('BASIC_AUTH_USER', 'admin2'),
-                env('BASIC_AUTH_PASSWORD', 'secret')
-    		],
+            ],
+            [
+                'admin2',
+                'secret'
+            ],
         ]
-	];
+    ];
+```
 
 Note: in the configuration files, use the passwords as they are, when you turn on the HTTP Basic Authenticationmode, the passwords will be written to the temporary file in **storage/framework/basicauth**. The passwords will be hashed.
 
