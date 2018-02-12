@@ -23,7 +23,7 @@ Add package to your **composer.json** file:
 
 For Laravel <= 5.4 add service provider to **config/app.php**
 
-````php
+```php
 'providers' => [
     ViktorMiller\LaravelBasicAuth\ServiceProvider::class,
 ]
