@@ -15,6 +15,9 @@ At the end you can enter an optional time interval in days and/or hours and/or m
 - Support to set temporary authentication data
 - Support set a time limit (in Days, Hours or Minutes). At the end of this time, the HTTP Basic Authentication mode will be automatically turned off.
 
+[[https://github.com/viktor-miller/laravel-basic-auth/blob/master/img/console.png|alt=console]]
+[[https://github.com/viktor-miller/laravel-basic-auth/blob/master/img/auth.png|alt=auth]]
+
 ### Installation ###
 
 Add package to your **composer.json** file:

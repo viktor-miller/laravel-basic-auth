@@ -69,19 +69,13 @@ class On extends Command
         $identities = []; 
         
         if ($this->confirm(__('basic-auth::messages.config-usage'), true)) {
-            $identities = config('basic-auth.identities', []);
-            
-            if (! count($identities)) {
-                $this->error(__('basic-auth::messages.config-empty'));
-            }
+            array_push($identities, config('basic-auth.identities', []));
+        } else {
+            array_push($identities, $this->askIdentities());
         }
         
-        if (count($identities)) {
-            if ($this->confirm(__('basic-auth::messages.temp-usage'))) {
-                array_push($identities, $this->askIdentities());
-            }
-        } else {    
-            array_push($identities, $this->askIdentities());
+        if (! count($identities)) {    
+            $this->error(__('basic-auth::messages.config-empty'));
         }
         
         foreach ($identities as $key => $identity) {
